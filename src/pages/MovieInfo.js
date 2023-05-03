@@ -1,35 +1,30 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-import { Outlet, useParams, Link } from 'react-router-dom';
-
-const API_KEY = '326ecd742c922271411e34618fb1e345';
+import { useEffect, useRef, useState, Suspense } from 'react';
+import { Outlet, useParams, Link, useLocation } from 'react-router-dom';
+import { getEndPoint, fetchMovieData } from 'services/moviedb-api';
 
 const Movie = () => {
+  const location = useLocation();
+  const backLinkLocationRef = useRef(location.state?.from ?? '/movies');
   const { movieId } = useParams();
   const [movie, setMovie] = useState({});
+  const endPoint = getEndPoint('movieInfo', movieId);
 
   useEffect(() => {
-    async function fetchMovie() {
-      const response = await axios.get(
-        `https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}`
-      );
-      return response.data;
-    }
-
-    async function getMovie() {
+    async function getMoviInfo() {
       try {
-        const movie = await fetchMovie();
+        const movie = await fetchMovieData(endPoint).then(r => r.data);
         setMovie({ ...movie });
       } catch (error) {}
     }
 
-    getMovie();
-  }, [movieId]);
+    getMoviInfo();
+  }, [endPoint]);
 
   const { poster_path, original_title, vote_average, overview, genres } = movie;
 
   return (
     <>
+      <Link to={backLinkLocationRef.current}>Go Back</Link>
       <div>
         <img
           src={`https://image.tmdb.org/t/p/original/${poster_path}`}
@@ -62,7 +57,9 @@ const Movie = () => {
           <Link to="reviews">Reviews</Link>
         </li>
       </ul>
-      <Outlet />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Outlet />
+      </Suspense>
     </>
   );
 };

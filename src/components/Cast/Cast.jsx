@@ -1,30 +1,22 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
-
-const API_KEY = '326ecd742c922271411e34618fb1e345';
+import { getEndPoint, fetchMovieData } from 'services/moviedb-api';
 
 const Cast = () => {
   const { movieId } = useParams();
   const [castList, setCastList] = useState([]);
+  const endPoint = getEndPoint('cast', movieId);
 
   useEffect(() => {
-    async function fetchCasts() {
-      const response = await axios.get(
-        `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${API_KEY}`
-      );
-      return response.data.cast;
-    }
-
-    async function getCasts() {
+    async function getCast() {
       try {
-        const cast = await fetchCasts();
+        const cast = await fetchMovieData(endPoint).then(r => r.data.cast);
         setCastList([...cast]);
       } catch (error) {}
     }
 
-    getCasts();
-  }, [movieId]);
+    getCast();
+  }, [endPoint]);
 
   return (
     <ul>

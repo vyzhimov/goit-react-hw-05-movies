@@ -1,36 +1,29 @@
-import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-
-const API_KEY = '326ecd742c922271411e34618fb1e345';
+import { getEndPoint, fetchMovieData } from 'services/moviedb-api';
 
 const Home = () => {
+  const location = useLocation();
   const [trendingMovie, setTrendingMovie] = useState([]);
+  const endPoint = getEndPoint('trending');
 
   useEffect(() => {
-    async function fetchPopularMovies() {
-      const response = await axios.get(
-        `https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}`
-      );
-      return response.data.results;
-    }
-
     async function FetchTrendingMovies() {
       try {
-        const trendyMovies = await fetchPopularMovies();
-        setTrendingMovie(trendyMovies);
+        const movies = await fetchMovieData(endPoint).then(r => r.data.results);
+        setTrendingMovie([...movies]);
       } catch (error) {}
     }
 
     FetchTrendingMovies();
-  }, []);
+  }, [endPoint]);
 
   return (
     <ul>
       {trendingMovie.map(({ id, original_title, backdrop_path }) => {
         return (
           <li key={id}>
-            <Link to={`/movies/${id}`}>
+            <Link to={`/movies/${id}`} state={{ from: location }}>
               <img
                 src={`https://image.tmdb.org/t/p/original/${backdrop_path}`}
                 alt={original_title}
