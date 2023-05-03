@@ -1,6 +1,6 @@
 import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { getEndPoint, fetchSearch } from 'services/moviedb-api';
+import { getEndPoint, fetchMovieData } from 'services/moviedb-api';
 
 const SearchMovies = () => {
   const location = useLocation();
@@ -21,21 +21,13 @@ const SearchMovies = () => {
   };
 
   useEffect(() => {
-    // async function fetchMovie() {
-    //   const response = await axios.get(
-    //     `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&query=${movieQuery}&page=1&include_adult=false`
-    //     `
-    //   );
-    //   return response.data.results;
-    // }
-
-    console.log(endPoint);
-    console.log(movieQuery);
-
     async function searchMovieByQuery() {
       try {
-        const movie = await fetchSearch(movieQuery).then(r => r.data.results);
+        const movie = await fetchMovieData(endPoint, movieQuery).then(
+          r => r.data.results
+        );
         setMovieList([...movie]);
+        console.log(movie);
       } catch (error) {}
     }
 
@@ -58,15 +50,17 @@ const SearchMovies = () => {
       </form>
       {movieQuery && (
         <ul>
-          {movieList.map(movie => {
-            return (
-              <li key={movie.id}>
-                <Link to={`/movies/${movie.id}`} state={{ from: location }}>
-                  <h2>{movie.original_title}</h2>
-                </Link>
-              </li>
-            );
-          })}
+          {movieList
+            .filter(movie => movie.original_language === 'en')
+            .map(movie => {
+              return (
+                <li key={movie.id}>
+                  <Link to={`/movies/${movie.id}`} state={{ from: location }}>
+                    <h2>{movie.original_title}</h2>
+                  </Link>
+                </li>
+              );
+            })}
         </ul>
       )}
     </>
