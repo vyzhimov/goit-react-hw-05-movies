@@ -8,7 +8,7 @@ const SearchMovies = () => {
   const [movieName, setMovieName] = useState('');
   const [movieList, setMovieList] = useState([]);
   const movieQuery = searchParams.get('query') ?? '';
-  const endPoint = getEndPoint('searchMovie');
+  const endPoint = getEndPoint('searchMovie', '', movieQuery);
 
   const handleInputChange = evt => {
     setMovieName(evt.currentTarget.value);
@@ -17,15 +17,13 @@ const SearchMovies = () => {
   const handleSubmit = evt => {
     evt.preventDefault();
 
-    setSearchParams(movieName === '' ? {} : { query: movieName });
+    setSearchParams(movieName === '' ? {} : { query: movieName.trim() });
   };
 
   useEffect(() => {
     async function searchMovieByQuery() {
       try {
-        const movie = await fetchMovieData(endPoint, movieQuery).then(
-          r => r.data.results
-        );
+        const movie = await fetchMovieData(endPoint).then(r => r.data.results);
         setMovieList([...movie]);
         console.log(movie);
       } catch (error) {}

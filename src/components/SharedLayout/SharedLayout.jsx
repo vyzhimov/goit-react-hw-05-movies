@@ -1,23 +1,33 @@
 import { Suspense } from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
+import IsLoading from '../IsLoading';
+import { BiMoviePlay, BiSearchAlt } from 'react-icons/bi';
 
-import { Container } from './SharedLayout.styled';
+import { Container, Header, HeaderLink } from './SharedLayout.styled';
 
 const SharedLayout = () => {
   return (
-    <Container>
-      <header>
+    <>
+      <Header>
         <nav>
-          <NavLink to="/">Home</NavLink>
-          <NavLink to="/movies">Movies</NavLink>
+          <HeaderLink to="/">
+            <BiMoviePlay style={{ fontSize: '30px' }} />
+            HOME
+          </HeaderLink>
+          <HeaderLink to="/movies">
+            <BiSearchAlt style={{ fontSize: '30px' }} />
+            MOVIES
+          </HeaderLink>
         </nav>
-      </header>
-      <main>
-        <Suspense fallback={<div>Loading...</div>}>
-          <Outlet />
-        </Suspense>
-      </main>
-    </Container>
+      </Header>
+      <Container>
+        <main>
+          <Suspense fallback={<IsLoading />}>
+            <Outlet />
+          </Suspense>
+        </main>
+      </Container>
+    </>
   );
 };
 
