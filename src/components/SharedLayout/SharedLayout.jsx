@@ -3,22 +3,22 @@ import { Outlet } from 'react-router-dom';
 import IsLoading from '../IsLoading';
 import { BiMoviePlay, BiSearchAlt } from 'react-icons/bi';
 
-import { Container, Header, HeaderLink } from './SharedLayout.styled';
+import { Container, Header, NavMenu, HeaderLink } from './SharedLayout.styled';
 
 const SharedLayout = () => {
   return (
     <>
       <Header>
-        <nav>
+        <NavMenu>
           <HeaderLink to="/">
-            <BiMoviePlay style={{ fontSize: '30px' }} />
+            <BiMoviePlay style={{ fontSize: '25px' }} />
             HOME
           </HeaderLink>
           <HeaderLink to="/movies">
-            <BiSearchAlt style={{ fontSize: '30px' }} />
+            <BiSearchAlt style={{ fontSize: '25px' }} />
             MOVIES
           </HeaderLink>
-        </nav>
+        </NavMenu>
       </Header>
       <Container>
         <main>
