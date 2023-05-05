@@ -11,11 +11,11 @@ const SharedLayout = () => {
       <Header>
         <NavMenu>
           <HeaderLink to="/">
-            <BiMoviePlay style={{ fontSize: '25px' }} />
+            <BiMoviePlay style={{ fontSize: '20px' }} />
             HOME
           </HeaderLink>
           <HeaderLink to="/movies">
-            <BiSearchAlt style={{ fontSize: '25px' }} />
+            <BiSearchAlt style={{ fontSize: '20px' }} />
             MOVIES
           </HeaderLink>
         </NavMenu>

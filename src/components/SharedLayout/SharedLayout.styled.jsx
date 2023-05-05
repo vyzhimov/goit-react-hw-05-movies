@@ -15,10 +15,16 @@ export const Header = styled.header`
   align-items: center;
   padding-right: 32px;
   padding-left: 32px;
-  padding-top: 14px;
-  padding-bottom: 14px;
+  padding-top: 24px;
+  padding-bottom: 24px;
   color: #fff;
-  background-color: #000000;
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.9640449929971989) 0%,
+    rgba(0, 0, 0, 0.7091430322128851) 47%,
+    rgba(24, 24, 24, 0.7119441526610644) 100%
+  );
 `;
 
 export const NavMenu = styled.nav`
@@ -30,7 +36,7 @@ export const HeaderLink = styled(NavLink)`
   display: inline-flex;
   gap: 15px;
   align-items: center;
-  padding: 10px 40px;
+  padding: 5px 30px;
   border-radius: 5px;
   border: solid 1px #e50815;
   font-size: 16px;
