@@ -1,16 +1,12 @@
-import { Suspense, useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Suspense } from 'react';
+import { Outlet, useLocation } from 'react-router-dom';
 import IsLoading from '../IsLoading';
 import { BiMoviePlay, BiSearchAlt } from 'react-icons/bi';
 
 import { Container, Header, NavMenu, HeaderLink } from './SharedLayout.styled';
 
 const SharedLayout = () => {
-  const [activeBtn, setActiveBtn] = useState('home');
-
-  const handleActiveBtn = event => {
-    setActiveBtn(event.target.id);
-  };
+  const location = useLocation();
 
   return (
     <>
@@ -19,8 +15,7 @@ const SharedLayout = () => {
           <HeaderLink
             to="/"
             id="home"
-            onClick={handleActiveBtn}
-            active={(activeBtn === 'home').toString()}
+            active={(location.pathname === '/').toString()}
           >
             <BiMoviePlay style={{ fontSize: '20px' }} />
             HOME
@@ -28,8 +23,7 @@ const SharedLayout = () => {
           <HeaderLink
             to="/movies"
             id="movies"
-            onClick={handleActiveBtn}
-            active={(activeBtn === 'movies').toString()}
+            active={(location.pathname !== '/').toString()}
           >
             <BiSearchAlt style={{ fontSize: '20px' }} />
             MOVIES

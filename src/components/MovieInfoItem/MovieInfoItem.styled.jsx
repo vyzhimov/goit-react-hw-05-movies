@@ -18,7 +18,7 @@ export const Button = styled(Link)`
   text-align: center;
   color: #fff;
   background-color: ${({ active }) => {
-    return active === true ? '#e20712' : 'transparent';
+    return active === 'true' ? '#e20712' : 'transparent';
   }};
   -webkit-box-shadow: -1px 0px 12px -3px rgba(255, 255, 255, 1);
   -moz-box-shadow: -1px 0px 12px -3px rgba(255, 255, 255, 1);

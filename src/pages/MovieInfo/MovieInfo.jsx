@@ -59,7 +59,7 @@ const Movie = () => {
                 to="cast"
                 id="cast"
                 onClick={handleMovieBtnClick}
-                active={activeBtn === 'cast'}
+                active={(activeBtn === 'cast').toString()}
               >
                 Cast
               </Button>
@@ -69,7 +69,7 @@ const Movie = () => {
                 to="reviews"
                 id="reviews"
                 onClick={handleMovieBtnClick}
-                active={activeBtn === 'reviews'}
+                active={(activeBtn === 'reviews').toString()}
               >
                 Reviews
               </Button>
