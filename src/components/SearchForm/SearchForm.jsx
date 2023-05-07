@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import { Form, Input, Label, Button } from './SearchForm.styled';
 import { BiSearchAlt } from 'react-icons/bi';
 
@@ -21,3 +23,9 @@ const SearchForm = ({ handleSubmit, movieName, handleInputChange }) => {
 };
 
 export default SearchForm;
+
+SearchForm.propTypes = {
+  handleSubmit: PropTypes.func,
+  movieName: PropTypes.string,
+  handleInputChange: PropTypes.func,
+};

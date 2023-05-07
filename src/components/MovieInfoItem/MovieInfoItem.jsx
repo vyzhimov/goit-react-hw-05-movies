@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import {
   MovieInfoWrapper,
   ImageThumb,
@@ -58,3 +59,14 @@ const MovieInfoItem = ({ movieInfo }) => {
 };
 
 export default MovieInfoItem;
+
+MovieInfoItem.propTypes = {
+  movieInfo: PropTypes.shape({
+    poster_path: PropTypes.string,
+    original_title: PropTypes.string,
+    release_date: PropTypes.string,
+    vote_average: PropTypes.number,
+    overview: PropTypes.string,
+    genres: PropTypes.array,
+  }),
+};

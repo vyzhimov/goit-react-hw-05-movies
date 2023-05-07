@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import getFullYear from 'services/getYear';
 import {
   MovieList,
@@ -55,3 +57,15 @@ const TrendingMoviesList = ({ trendingMovies, location }) => {
 };
 
 export default TrendingMoviesList;
+
+TrendingMoviesList.propTypes = {
+  trendingMovies: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      backdrop_path: PropTypes.string,
+      original_title: PropTypes.string,
+      release_date: PropTypes.string,
+    })
+  ),
+  location: PropTypes.object,
+};

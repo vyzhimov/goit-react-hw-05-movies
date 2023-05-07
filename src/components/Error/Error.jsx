@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { ErrorWrapper, ErrorImg } from './Error.styled';
 import Warning from './Warning.png';
 
@@ -14,3 +15,7 @@ const Error = ({ message }) => {
 };
 
 export default Error;
+
+Error.propTypes = {
+  message: PropTypes.string,
+};
