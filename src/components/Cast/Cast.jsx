@@ -45,8 +45,8 @@ const Cast = () => {
                 : NoImage;
               return (
                 <CastListItem key={id}>
-                  <p>{name}</p>
                   <img src={image} alt={name} />
+                  <p>{name}</p>
                 </CastListItem>
               );
             })}

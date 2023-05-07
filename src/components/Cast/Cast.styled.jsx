@@ -13,13 +13,13 @@ export const CastListItem = styled.li`
   width: calc((100% - 120px) / 6);
 
   & p {
+    margin-top: 15px;
     color: #fff;
     font-size: 18px;
     text-align: center;
   }
 
   & img {
-    margin-top: 15px;
     width: 100%;
   }
 `;
