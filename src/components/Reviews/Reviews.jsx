@@ -9,9 +9,9 @@ const Reviews = () => {
   const { movieId } = useParams();
   const [reviews, setReviews] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const endPoint = getEndPoint('reviews', movieId);
 
   useEffect(() => {
+    const endPoint = getEndPoint('reviews', movieId);
     async function getReview() {
       try {
         setIsLoading(true);
@@ -25,7 +25,7 @@ const Reviews = () => {
     }
 
     getReview();
-  }, [endPoint]);
+  }, [movieId]);
 
   return (
     <>

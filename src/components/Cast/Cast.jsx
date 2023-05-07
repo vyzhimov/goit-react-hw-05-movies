@@ -11,9 +11,10 @@ const Cast = () => {
   const [castList, setCastList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
-  const endPoint = getEndPoint('cast', movieId);
 
   useEffect(() => {
+    const endPoint = getEndPoint('cast', movieId);
+
     async function getCast() {
       try {
         setIsLoading(true);
@@ -26,7 +27,7 @@ const Cast = () => {
       }
     }
     getCast();
-  }, [endPoint]);
+  }, [movieId]);
 
   return (
     <>

@@ -7,6 +7,7 @@ const SearchMovies = lazy(() => import('../../pages/SearchMovies'));
 const MovieInfo = lazy(() => import('../../pages/MovieInfo'));
 const Cast = lazy(() => import('../Cast'));
 const Reviews = lazy(() => import('../Reviews'));
+const PageNotFound = lazy(() => import('../PageNotFound'));
 
 export const App = () => {
   return (
@@ -19,6 +20,7 @@ export const App = () => {
             <Route path="cast" element={<Cast />} />
             <Route path="reviews" element={<Reviews />} />
           </Route>
+          <Route path="*" element={<PageNotFound />} />
         </Route>
       </Routes>
     </div>

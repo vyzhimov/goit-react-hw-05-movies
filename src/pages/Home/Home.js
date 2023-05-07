@@ -12,9 +12,10 @@ const Home = () => {
   const [trendingMovies, setTrendingMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
-  const endPoint = getEndPoint('trending');
 
   useEffect(() => {
+    const endPoint = getEndPoint('trending');
+
     async function FetchTrendingMovies() {
       try {
         setIsLoading(true);
@@ -28,7 +29,7 @@ const Home = () => {
     }
 
     FetchTrendingMovies();
-  }, [endPoint]);
+  }, []);
 
   return (
     <>

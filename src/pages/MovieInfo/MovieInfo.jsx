@@ -17,7 +17,6 @@ const Movie = () => {
   const backLinkLocationRef = useRef(location.state?.from ?? '/movies');
   const { movieId } = useParams();
   const [movie, setMovie] = useState({});
-  const endPoint = getEndPoint('movieInfo', movieId);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [activeBtn, setActiveBtn] = useState('');
@@ -28,6 +27,7 @@ const Movie = () => {
   };
 
   useEffect(() => {
+    const endPoint = getEndPoint('movieInfo', movieId);
     async function getMoviInfo() {
       try {
         setIsLoading(true);
@@ -41,7 +41,7 @@ const Movie = () => {
     }
 
     getMoviInfo();
-  }, [endPoint]);
+  }, [movieId]);
 
   return (
     <>

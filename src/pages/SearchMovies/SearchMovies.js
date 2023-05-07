@@ -12,30 +12,21 @@ import MoviesList from 'components/MoviesList';
 const SearchMovies = () => {
   const location = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
-  const [movieName, setMovieName] = useState('');
   const [movieList, setMovieList] = useState([]);
   const movieQuery = searchParams.get('query') ?? '';
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
-  const endPoint = getEndPoint('searchMovie', '', movieQuery);
 
-  const handleInputChange = evt => {
-    setMovieName(evt.currentTarget.value);
-  };
-
-  const handleSubmit = evt => {
-    evt.preventDefault();
-
-    if (movieName === '') {
+  const handleMovieSearch = query => {
+    if (query === '') {
       toast.error('Please enter your query!');
     }
 
-    setSearchParams(movieName === '' ? {} : { query: movieName.trim() });
-    setMovieName('');
-    evt.currentTarget.reset();
+    setSearchParams(query === '' ? {} : { query: query.trim() });
   };
 
   useEffect(() => {
+    const endPoint = getEndPoint('searchMovie', '', movieQuery);
     async function searchMovieByQuery() {
       try {
         setIsLoading(true);
@@ -51,15 +42,11 @@ const SearchMovies = () => {
     if (movieQuery) {
       searchMovieByQuery();
     }
-  }, [endPoint, movieQuery]);
+  }, [movieQuery]);
 
   return (
     <>
-      <SearchForm
-        handleSubmit={handleSubmit}
-        movieName={movieName}
-        handleInputChange={handleInputChange}
-      />
+      <SearchForm handleSubmit={handleMovieSearch} />
       {isLoading && <IsLoading />}
       {error && <Error message={error} />}
       {!isLoading && !error && movieQuery && (
