@@ -19,8 +19,8 @@ const SharedLayout = () => {
           <HeaderLink
             to="/"
             id="home"
-            style={{ borderColor: activeBtn === 'home' ? 'white' : 'red' }}
             onClick={handleActiveBtn}
+            active={(activeBtn === 'home').toString()}
           >
             <BiMoviePlay style={{ fontSize: '20px' }} />
             HOME
@@ -28,10 +28,8 @@ const SharedLayout = () => {
           <HeaderLink
             to="/movies"
             id="movies"
-            style={{
-              borderColor: activeBtn === 'movies' ? 'white' : 'red',
-            }}
             onClick={handleActiveBtn}
+            active={(activeBtn === 'movies').toString()}
           >
             <BiSearchAlt style={{ fontSize: '20px' }} />
             MOVIES

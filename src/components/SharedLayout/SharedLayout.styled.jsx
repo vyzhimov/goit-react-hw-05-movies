@@ -34,27 +34,31 @@ export const NavMenu = styled.nav`
 
 export const HeaderLink = styled(NavLink)`
   display: inline-flex;
+  min-width: 200px;
   gap: 10px;
+  justify-content: center;
   align-items: center;
   padding: 5px 30px;
-  border: solid 1px #e50815;
+  border: solid 1px #fff;
   font-size: 16px;
   font-weight: 700;
   text-decoration: none;
   text-align: center;
   color: #fff;
-  background: red;
-  -webkit-box-shadow: -1px 0px 12px -3px rgba(229, 8, 21, 1);
-  -moz-box-shadow: -1px 0px 12px -3px rgba(229, 8, 21, 1);
-  box-shadow: -1px 0px 12px -3px rgba(229, 8, 21, 1);
+
+  background-color: ${props =>
+    props.active === 'true' ? '#e20712' : '#transparent'};
+  -webkit-box-shadow: -1px 0px 12px -3px rgba(255, 255, 255, 1);
+  -moz-box-shadow: -1px 0px 12px -3px rgba(255, 255, 255, 1);
+  box-shadow: -1px 0px 12px -3px rgba(255, 255, 255, 1);
   transition: all 250ms;
 
   &:hover,
-  &:focus {
+  &:focus-visible {
     background-color: #e20712;
     transform: scale(1.1);
-    -webkit-box-shadow: -1px 0px 12px 1px rgba(229, 8, 21, 1);
-    -moz-box-shadow: -1px 0px 12px 1px rgba(229, 8, 21, 1);
-    box-shadow: -1px 0px 12px 1px rgba(229, 8, 21, 1);
+    -webkit-box-shadow: -1px 0px 12px 1px rgba(255, 255, 255, 1);
+    -moz-box-shadow: -1px 0px 12px 1px rgba(255, 255, 255, 1);
+    box-shadow: -1px 0px 12px 1px rgba(255, 255, 255, 1);
   }
 `;
